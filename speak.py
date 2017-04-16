@@ -92,11 +92,19 @@ class Twitterings:
 
 		return things
 
+	def existing(self):
+
+		return [n.text for n in self.api.user_timeline() ]
+
+
 	def speak(self,text=None):
 		"""Post a Quote to Twitter"""
 
 		if text==None:
-			self.api.update_status(choice(self.wonderings()))
+			current = choice(self.wonderings())
+			while current in self.existing():
+				current = choice(self.wonderings())
+			self.api.update_status(current)
 		else:
 			self.api.update_status(text)
 
