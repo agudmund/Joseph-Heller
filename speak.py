@@ -2,7 +2,8 @@
 # *-* coding: utf-8 *-*
 
 import tweepy
-from random import choice
+from time import sleep
+from random import choice,randint
 from tweepy import OAuthHandler
 
 class Twitterings:
@@ -119,4 +120,6 @@ class Twitterings:
 
 if __name__ == '__main__':
 	twitter = Twitterings()
-	twitter.speak()
+	while True:
+		sleep(randint(1000,3000))
+		twitter.speak()
