@@ -97,18 +97,18 @@ class Twitterings:
 
 		return [n.text for n in self.api.user_timeline() ]
 
-
 	def speak(self,text=None):
 		"""Post a Quote to Twitter"""
 
 		if text==None:
+			current = choice(self.wonderings())
+			print '--[ Sending tweet: %s' % current
 			try:
-				current = choice(self.wonderings())
+				
 				while current in self.existing():
 					current = choice(self.wonderings())
 				self.api.update_status(current)
 			except tweepy.error.TweepError as e:
-				print current
 				print e
 				return False
 		else:
@@ -126,5 +126,7 @@ class Twitterings:
 if __name__ == '__main__':
 	twitter = Twitterings()
 	while True:
-		sleep(randint(1000,3000))
+		delay = randint(1000,3000)
+		print '--[ Waiting for %s seconds' % delay
+		sleep(delay)
 		twitter.speak()
