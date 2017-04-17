@@ -102,10 +102,15 @@ class Twitterings:
 		"""Post a Quote to Twitter"""
 
 		if text==None:
-			current = choice(self.wonderings())
-			while current in self.existing():
+			try:
 				current = choice(self.wonderings())
-			self.api.update_status(current)
+				while current in self.existing():
+					current = choice(self.wonderings())
+				self.api.update_status(current)
+			except tweepy.error.TweepError as e:
+				print current
+				print e
+				return False
 		else:
 			self.api.update_status(text)
 
