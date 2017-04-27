@@ -8,6 +8,7 @@ from time import sleep
 from random import choice,randint
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
+from tweepy.error import TweepError
 from tweepy import Stream
 from tweepy import API
 
@@ -25,16 +26,13 @@ class StdOutListener(StreamListener):
 			return False
 
 	def followings(self, name):
-
 		try:
+			print 'Adding %s' % name
 			twitter.api.create_friendship(name)
-		except tweepy.error.TweepError as e:
-			while not self.new_friends(name):
-				print 'Current Follower Count: %s' % twitter.api.me().friends_count
-				self.new_friends(name)
-				sleep(randint(2,7))
-
-			# print 'This one, ' + str(choice(twitter.api.friends_ids()))
+			print 'Current Follower Count: %s' % twitter.api.me().friends_count
+		except TweepError as e:
+			print 'Could not add %s' % name
+			print e
 			
 		return True
 
