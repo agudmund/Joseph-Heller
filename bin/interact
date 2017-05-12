@@ -14,17 +14,6 @@ from tweepy import API
 
 class StdOutListener(StreamListener):
 
-	def new_friends(self,name):
-
-		twitter.api.destroy_friendship(id=choice(twitter.api.friends_ids()))
-		try:
-			twitter.api.create_friendship(name)
-			print 'Added %s' % name
-			return True
-		except tweepy.error.TweepError as e:
-			print e
-			return False
-
 	def followings(self, name):
 		try:
 			print 'Adding %s' % name
