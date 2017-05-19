@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # *-* coding: utf-8 *-*
 
+import random
 from twitterings import Base
 
 twitter = Base()
 
-for account in twitter.api.friends_ids():
+
+while twitter.api.friends_ids()>0:
 	print 'Total Following Count: %s' % twitter.api.me().friends_count
-	twitter.api.destroy_friendship(id=account)
+	twitter.api.destroy_friendship(id=random.choice(twitter.api.friends_ids()))
