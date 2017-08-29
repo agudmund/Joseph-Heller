@@ -126,7 +126,7 @@ class Twitterings:
 if __name__ == '__main__':
 	twitter = Twitterings()
 	while True:
-		delay = randint(1000,3000)
+		delay = randint(10800,32400)
 		print '--[ Waiting for %s seconds' % delay
 		sleep(delay)
 		twitter.speak()
