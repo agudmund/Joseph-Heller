@@ -1,2 +1,2 @@
 # Joseph-Heller
-# A tribute to the great Jospeh Heller
+# A tribute to the great Joseph Heller
